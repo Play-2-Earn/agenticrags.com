@@ -1,142 +1,110 @@
 import React, { useState, useEffect } from "react";
-import { Bitcoin, Cpu, Zap, Orbit, Rocket } from "lucide-react";
 
-const LandingPage = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      setMousePosition({ x: event.clientX, y: event.clientY });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
-  const openAILink = () => {
-    window.open("https://www.b1tcoin.ai/", "_blank");
-  };
-
+const App = () => {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-black text-white">
-      {/* Intense Particle Background */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(29, 78, 216, 0.3), transparent 50%)`,
-          backgroundBlendMode: "screen",
-        }}
-      >
-        <div className="absolute inset-0 animate-pulse opacity-20 bg-gradient-to-r from-purple-900 via-indigo-900 to-blue-900"></div>
-      </div>
-
-      {/* Glitch Overlay */}
-      <div className="fixed inset-0 pointer-events-none z-10 opacity-10">
-        <div className="absolute inset-0 bg-[length:100px_100px] bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] opacity-20"></div>
-        <div className="absolute inset-0 animate-glitch-anim bg-red-500/10"></div>
-      </div>
-
-      {/* Content */}
-      <div className="relative z-20">
-        {/* Hyper-Intense Navigation */}
-        <nav className="fixed top-0 left-0 right-0 p-4 backdrop-blur-3xl bg-black/60 border-b border-white/10 animate-pulse-slow">
-          <div className="container mx-auto flex justify-between items-center">
-            <div className="flex items-center space-x-4">
-              <Rocket className="text-cyan-400 animate-bounce" size={40} />
-              <h1 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 tracking-widest uppercase">
-                3AgenticRags
-              </h1>
-            </div>
-            <div className="space-x-6 flex items-center">
-              {["Crypto", "AI", "DePIN", "Web3"].map((item) => (
-                <a
-                  key={item}
-                  href="#"
-                  className="text-lg font-bold hover:text-cyan-300 transition-all transform hover:scale-110 hover:tracking-wider"
-                >
-                  {item}
-                </a>
-              ))}
-            </div>
-          </div>
+    <div className="bg-gradient-to-r from-blue-900 via-black to-gray-900 text-white font-sans">
+      {/* Header Section */}
+      <header className="p-6 flex justify-between items-center">
+        <div className="text-3xl font-bold">AgenticRags</div>
+        <nav className="space-x-6">
+          <a href="#about" className="hover:text-yellow-400">About</a>
+          <a href="#services" className="hover:text-yellow-400">Services</a>
+          <a href="#contact" className="hover:text-yellow-400">Contact</a>
         </nav>
+      </header>
 
-        {/* Hyper-Dynamic Hero Section */}
-        <main className="container mx-auto px-4 pt-24 min-h-screen flex items-center">
-          <div className="text-center space-y-10">
-            <div className="relative">
-              <h2 className="text-7xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-500 to-purple-600 animate-text-shimmer">
-                DECENTRALIZED INTELLIGENCE
-              </h2>
-              <div className="absolute inset-0 -z-10 bg-white/5 blur-3xl"></div>
-            </div>
+      {/* Hero Section */}
+      <section className="text-center py-20 px-6">
+        <h1 className="text-5xl md:text-7xl font-extrabold mb-6">
+          Unleashing <span className="text-yellow-400">Bitcoin</span> & AI Synergy
+        </h1>
+        <p className="text-lg md:text-xl mb-8">
+          Empowering the next wave of decentralized innovation through blockchain technology, Web3, and Artificial Intelligence. Dive into the future of DePIN (Decentralized Physical Infrastructure Networks).
+        </p>
+        <button
+          onClick={() => window.open('https://www.b1tcoin.ai/', '_blank')}
+          className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300"
+        >
+          Explore Bitcoin AI
+        </button>
+      </section>
 
-            <p className="text-2xl max-w-4xl mx-auto text-gray-300 tracking-wide leading-relaxed">
-              Web3 Leap in Blockchain: AI-Powered Agents Redefining Crypto
-              Ecosystems
+      {/* About Section */}
+      <section id="about" className="py-20 px-6 md:px-20">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4">About AgenticRags</h2>
+          <p className="text-lg">
+            At AgenticRags, we are redefining possibilities by merging the principles of Bitcoin with cutting-edge AI technologies. Our mission is to create a decentralized future where physical and digital infrastructures coexist seamlessly.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h3 className="text-2xl font-bold mb-4">Bitcoin Innovation</h3>
+            <p>
+              From Lightning Network integrations to decentralized staking, we harness the power of Bitcoin to build scalable, transparent, and secure systems.
             </p>
-
-            <div className="space-x-6 flex justify-center items-center">
-              <button
-                onClick={openAILink}
-                className="px-10 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full text-lg font-bold 
-                  transform hover:scale-110 transition-all duration-300 
-                  shadow-2xl shadow-cyan-500/50 hover:shadow-cyan-400/70 
-                  animate-pulse-slow"
-              >
-                Launch Bitcoin AI
-                <Zap className="inline ml-2" size={24} />
-              </button>
-              <button
-                className="px-10 py-4 border-2 border-white/30 rounded-full 
-                hover:bg-white/10 transition-all transform hover:scale-105"
-              >
-                Explore Technology
-                <Orbit className="inline ml-2" size={24} />
-              </button>
-            </div>
           </div>
-        </main>
+          <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h3 className="text-2xl font-bold mb-4">AI Empowerment</h3>
+            <p>
+              Leveraging machine learning and neural networks to optimize blockchain processes, predictive modeling, and intelligent automation.
+            </p>
+          </div>
+          <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h3 className="text-2xl font-bold mb-4">Decentralized Infrastructure</h3>
+            <p>
+              Revolutionizing traditional systems with DePIN solutions for global connectivity, real-time data sharing, and more.
+            </p>
+          </div>
+        </div>
+      </section>
 
-        {/* Futuristic Features Grid */}
-        <section className="container mx-auto mt-16 grid md:grid-cols-3 gap-8 px-4">
-          {[
-            {
-              icon: <Cpu className="text-cyan-400" size={64} />,
-              title: "Hyper-Intelligent Networks",
-              description:
-                "Web3 AI meets blockchain. Unprecedented computational intelligence driving decentralized ecosystems.",
-            },
-            {
-              icon: <Bitcoin className="text-orange-400" size={64} />,
-              title: "Crypto Evolution",
-              description:
-                "Next-generation blockchain protocols powered by adaptive AI agents and advanced cryptographic technologies.",
-            },
-            {
-              icon: <Zap className="text-purple-400" size={64} />,
-              title: "Web3 Revolution",
-              description:
-                "Seamless, secure, and lightning-fast decentralized infrastructure transforming digital interactions.",
-            },
-          ].map((feature, index) => (
-            <div
-              key={index}
-              className="bg-black/40 p-8 rounded-3xl border border-white/20 
-                hover:border-cyan-500/50 transition-all transform hover:scale-105 
-                backdrop-blur-xl space-y-4 text-center"
-            >
-              <div className="flex justify-center mb-4">{feature.icon}</div>
-              <h3 className="text-2xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-500">
-                {feature.title}
-              </h3>
-              <p className="text-gray-300">{feature.description}</p>
-            </div>
-          ))}
-        </section>
-      </div>
+      {/* Services Section */}
+      <section id="services" className="py-20 px-6 md:px-20 bg-gray-900">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4">Our Services</h2>
+          <p className="text-lg">
+            Unlock the true potential of blockchain and AI with our cutting-edge services.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h3 className="text-2xl font-bold mb-4">Decentralized Applications</h3>
+            <p>
+              Design, development, and deployment of Web3 and blockchain-based applications tailored to your needs.
+            </p>
+          </div>
+          <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h3 className="text-2xl font-bold mb-4">AI-Driven Insights</h3>
+            <p>
+              Empower decision-making with AI algorithms that deliver actionable insights and optimize blockchain performance.
+            </p>
+          </div>
+          <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h3 className="text-2xl font-bold mb-4">DePIN Solutions</h3>
+            <p>
+              Building decentralized networks to support physical infrastructure and foster global innovation.
+            </p>
+          </div>
+          <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h3 className="text-2xl font-bold mb-4">Custom Blockchain Projects</h3>
+            <p>
+              From tokenomics to protocol design, we offer bespoke solutions to bring your ideas to life.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer Section */}
+      <footer className="py-10 bg-black text-center">
+        <p className="text-sm">
+          &copy; {new Date().getFullYear()} AgenticRags. All Rights Reserved.
+        </p>
+      </footer>
     </div>
   );
 };
 
-export default LandingPage;
+export default App;
+
